@@ -24,12 +24,10 @@ class	Tower
 	protected void	conditionsChanged()
 	{
 		int		i;
-		int		len;
 		Flyable	f;
 
-		len = observers.size();
 		i = -1;
-		while (++i < len)
+		while (++i < observers.size())
 		{
 			f = observers.get(i);
 			f.updateConditions();

@@ -11,7 +11,7 @@ class	Parser
 		fr = new FileReader(filename);
 	}
 
-	public int getNumberOfWeather() throws IOException
+	public BufferedReader getNumberOfWeather(int[] numWeather) throws IOException
 	{
 		BufferedReader	br;
 		String			line;
@@ -19,20 +19,12 @@ class	Parser
 		br = new BufferedReader(fr);
 		line = br.readLine();
 		if (line == null)
-			return (-1);
-		return (Integer.parseInt(line));
-	}
-
-	public BufferedReader	getCordinatesReader() throws IOException
-	{
-		BufferedReader br;
-
-		br = new BufferedReader(fr);
-		br.readLine();
+			return (null);
+		numWeather[0] = Integer.parseInt(line);
 		return (br);
 	}
 
-	public int	getLineParameters(Object[] obj, BufferedReader br) throws IOException
+	public int	getLineParameters(StringBuilder type, StringBuilder name, int[] coor , BufferedReader br) throws IOException
 	{
 		String		line;
 		String[]	str;
@@ -44,9 +36,13 @@ class	Parser
 		str = line.split(" ");
 		if (str.length != 5)
 			return (-1);
-		i = -1;
-		while (++i < 5)
-			obj[i] = new String(str[i]);
+		name.setLength(0);
+		name.append(str[1]);
+		type.setLength(0);
+		type.append(str[0]);
+		coor[0] = Integer.parseInt(str[2]);
+		coor[1] = Integer.parseInt(str[3]);
+		coor[2] = Integer.parseInt(str[4]);
 		return (1);
 	}
 }

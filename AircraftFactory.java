@@ -17,8 +17,12 @@ class AircraftFactory
 		f = null;
 		if (aircraftFactoryInstance == null)
 			aircraftFactoryInstance = new AircraftFactory();
-		if (p_type.equals("Helicopter"))
+		if (p_type.equalsIgnoreCase("Helicopter"))
 			f = new Helicopter((aircraftFactoryInstance.uniq_id)++, p_name, p_coordinates);
+		else if (p_type.equalsIgnoreCase("JetPlane"))
+			f = new JetPlane((aircraftFactoryInstance.uniq_id)++, p_name, p_coordinates);
+		else if (p_type.equalsIgnoreCase("Baloon"))
+			f = new Baloon((aircraftFactoryInstance.uniq_id)++, p_name, p_coordinates);
 		return (f);
 	}
 }
